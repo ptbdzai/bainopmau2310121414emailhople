@@ -32,6 +32,27 @@ get_name_in_email([None, 'abb#ccc'])                      | ['ERROR invaid email
 #endregion debai
 
 #region bailam
+import re
 def get_name_in_email(email_list):
-  return 'todo'
+  b=[None]*len(email_list)
+  a=[None]*len(email_list)
+  for i in range(len(email_list)):
+    if email_list[i] is None:
+      email_list[i]='abcd'
+  for i in range(len(email_list)):
+    b[i]=re.findall(r'[0-9a-zA-z_-]+@',email_list[i])
+    if b[i]:
+      test=0
+    else:
+      a[i]='ERROR invaid email'
+      
+  for i in range(len(email_list)):
+    if a[i]!='ERROR invaid email':
+      a[i]=re.findall(r'[0-9a-zA-z_-]+',b[i][0])
+  for i in range(len(email_list)):
+    if a[i]!='ERROR invaid email':
+      a[i]=a[i][0]
+  return a
+
+  
 #endregion bailam
